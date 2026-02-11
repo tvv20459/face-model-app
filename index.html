@@ -20,7 +20,26 @@
 
 <script>
 
-const API_KEY = "YOUR_API_KEY_HERE";
+async function generateImage() {
+
+  document.getElementById("status").innerText = "Generating...";
+
+  const response = await fetch("/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      prompt: "Ultra realistic DSLR portrait of an 18 year old girl, neutral lighting, no makeup, real photography"
+    })
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+
+  document.getElementById("status").innerText = "Done. Check console.";
+
+}
+
 
 async function generateImage() {
 
